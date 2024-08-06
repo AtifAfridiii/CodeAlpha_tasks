@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "754160068044",
+    "firebase_url": "https://dukan-959a2-default-rtdb.firebaseio.com",
+    "project_id": "dukan-959a2",
+    "storage_bucket": "dukan-959a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754160068044:android:b33f612108dfa7a4512969",
+        "android_client_info": {
+          "package_name": "com.e"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU6l-vCVsqnQa1qj-qlSvAk6e0JRw2aAg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754160068044:android:785aee9e44921943512969",
+        "android_client_info": {
+          "package_name": "com.example.dukan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU6l-vCVsqnQa1qj-qlSvAk6e0JRw2aAg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
