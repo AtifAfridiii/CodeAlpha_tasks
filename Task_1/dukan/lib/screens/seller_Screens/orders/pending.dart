@@ -1,57 +1,69 @@
 import 'dart:convert';
-
-import 'package:dukan/provider/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class Pending_Order extends StatelessWidget {
-  const Pending_Order({super.key});
+ const Pending_Order({Key? key}) : super(key: key);
+
+ 
 
   @override
   Widget build(BuildContext context) {
+     final DatabaseReference _database = FirebaseDatabase.instance.ref().child('pending_orders');
     return Scaffold(
-      body: Consumer<PendingOrdersProvider>(
-        builder: (context, pendingOrdersProvider, child) {
-          if (pendingOrdersProvider.pendingOrders.isEmpty) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                    child: Image.asset(
-                  'Assets/images/ser.png',
-                )),
-              ],
-            );
-          }
-          return ListView.builder(
-            itemCount: pendingOrdersProvider.pendingOrders.length,
-            itemBuilder: (context, index) {
-              final product = pendingOrdersProvider.pendingOrders[index];
-              return Card(
-                margin: const EdgeInsets.all(8),
-                child: ListTile(
-                  leading: product.image != null
-                      ? ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Image.memory(
-                            base64Decode(product.image),
-                            width: 50,
-                            height: 50,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                      : const Icon(Icons.image_not_supported),
-                  title: Text(product.name),
-                  subtitle: Text('Price: ${product.price}'),
-                  trailing: const Text('Pending...',
-                      style: TextStyle(
-                          color: Colors.orange,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold)),
-                ),
+      body: StreamBuilder(
+        stream: _database.onValue,
+        builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
+          if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
+            Map<dynamic, dynamic> orders = snapshot.data!.snapshot.value as Map<dynamic, dynamic>;
+            List<Map<dynamic, dynamic>> orderList = [];
+            orders.forEach((key, value) {
+              orderList.add(value);
+            });
+
+            if (orderList.isEmpty) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(child: Image.asset('Assets/images/ser.png')),
+                ],
               );
-            },
-          );
+            }
+
+            return ListView.builder(
+              itemCount: orderList.length,
+              itemBuilder: (context, index) {
+                var order = orderList[index];
+                return Card(
+                  margin: const EdgeInsets.all(8),
+                  child: ListTile(
+                    leading: order['image'] != null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: Image.memory(
+                              base64Decode(order['image']),
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : const Icon(Icons.image_not_supported),
+                    title: Text(order['name']),
+                    subtitle: Text('Price: ${order['price']}'),
+                    trailing: const Text('Pending...',
+                        style: TextStyle(
+                            color: Colors.orange,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                );
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
         },
       ),
     );
