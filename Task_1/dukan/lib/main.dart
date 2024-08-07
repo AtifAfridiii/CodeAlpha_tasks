@@ -65,18 +65,22 @@ class MyApp extends StatelessWidget {
       child: Builder(
         builder: (BuildContext context) {
           final themechnager = Provider.of<ThemeChanger>(context);
-          return MaterialApp(
-            title: 'Flutter Demo',
-            themeMode: themechnager.Thememode,
-            theme: ThemeData(
-              brightness: Brightness.light,
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
-            ),
-            darkTheme: ThemeData(
-              brightness: Brightness.dark,
-            ),
-            home: const Splash_Screen(),
+          return Consumer<ThemeChanger>(
+           builder: (context, value, child) {
+             return  MaterialApp(
+              title: 'Flutter Demo',
+              themeMode: themechnager.Thememode,
+              theme: ThemeData(
+                brightness: Brightness.light,
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: true,
+              ),
+              darkTheme: ThemeData(
+                brightness: Brightness.dark,
+              ),
+              home: const Splash_Screen(),
+            );
+           },
           );
         },
       ),
