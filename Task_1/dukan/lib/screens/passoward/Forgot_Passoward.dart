@@ -80,7 +80,7 @@ class _ForgotPassowardState extends State<ForgotPassoward> {
               const Gap(51),
               RoundButton(
                 title: 'Verify',
-                color:ISDark? Colors.deepPurple: Colors.black,
+                color: ISDark ? Colors.deepPurple : Colors.black,
                 ontap: () {
                   if (_formkey.currentState!.validate()) {
                     ResetPassoward();
