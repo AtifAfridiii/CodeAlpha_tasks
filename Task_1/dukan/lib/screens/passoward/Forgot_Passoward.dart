@@ -1,9 +1,11 @@
 import 'package:dukan/Utilis/toast_message.dart';
 import 'package:dukan/components/Back_Button.dart';
 import 'package:dukan/components/Round_Button.dart';
+import 'package:dukan/provider/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 
 final _formkey = GlobalKey<FormState>();
 
@@ -32,6 +34,8 @@ class _ForgotPassowardState extends State<ForgotPassoward> {
 
   @override
   Widget build(BuildContext context) {
+    final Iconprovider = Provider.of<ThemeChanger>(context);
+    bool ISDark = Iconprovider.Thememode == ThemeMode.dark;
     return Scaffold(
       appBar: AppBar(
         leading: AppBar(
@@ -76,7 +80,7 @@ class _ForgotPassowardState extends State<ForgotPassoward> {
               const Gap(51),
               RoundButton(
                 title: 'Verify',
-                color: Colors.black,
+                color:ISDark? Colors.deepPurple: Colors.black,
                 ontap: () {
                   if (_formkey.currentState!.validate()) {
                     ResetPassoward();

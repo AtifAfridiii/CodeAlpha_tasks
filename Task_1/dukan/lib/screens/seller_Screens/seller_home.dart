@@ -43,7 +43,7 @@ class _Seller_ScreenState extends State<Seller_Screen> {
           ),
         ),
         drawer: Drawer(
-          width: MediaQuery.of(context).size.width * 0.5,
+          width: MediaQuery.of(context).size.width * 0.59,
           child: ListView(
             children: <Widget>[
               Container(
