@@ -167,7 +167,6 @@ class _Seller_ScreenState extends State<Seller_Screen> {
         ),
         body: SafeArea(
           child: Column(
-            
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

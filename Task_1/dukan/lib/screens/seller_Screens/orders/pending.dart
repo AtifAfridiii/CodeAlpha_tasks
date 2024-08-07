@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class Pending_Order extends StatelessWidget {
- const Pending_Order({Key? key}) : super(key: key);
-
- 
+  const Pending_Order({super.key});
 
   @override
   Widget build(BuildContext context) {
-     final DatabaseReference _database = FirebaseDatabase.instance.ref().child('pending_orders');
+    final DatabaseReference database =
+        FirebaseDatabase.instance.ref().child('pending_orders');
     return Scaffold(
       body: StreamBuilder(
-        stream: _database.onValue,
+        stream: database.onValue,
         builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
           if (snapshot.hasData && snapshot.data!.snapshot.value != null) {
-            Map<dynamic, dynamic> orders = snapshot.data!.snapshot.value as Map<dynamic, dynamic>;
+            Map<dynamic, dynamic> orders =
+                snapshot.data!.snapshot.value as Map<dynamic, dynamic>;
             List<Map<dynamic, dynamic>> orderList = [];
             orders.forEach((key, value) {
               orderList.add(value);

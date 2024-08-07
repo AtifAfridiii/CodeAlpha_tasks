@@ -12,7 +12,7 @@ import 'package:gap/gap.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class Cart_Screen extends StatefulWidget {
-  const Cart_Screen({Key? key}) : super(key: key);
+  const Cart_Screen({super.key});
 
   @override
   State<Cart_Screen> createState() => _Cart_ScreenState();
@@ -42,7 +42,6 @@ class _Cart_ScreenState extends State<Cart_Screen> {
     bool isDark = iconProvider.Thememode == ThemeMode.dark;
 
     return Scaffold(
-      
       body: Consumer<ItemAdded>(
         builder: (context, itemAdded, child) {
           return Column(
@@ -94,7 +93,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                         boxShadow: const [
                                           BoxShadow(
                                             color: Colors.black,
-                                            blurRadius: BorderSide.strokeAlignOutside,
+                                            blurRadius:
+                                                BorderSide.strokeAlignOutside,
                                             blurStyle: BlurStyle.outer,
                                             spreadRadius: 3,
                                           )
@@ -102,20 +102,34 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                       ),
                                       child: Center(
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                itemAdded.decrementCount(cartItem);
+                                                itemAdded
+                                                    .decrementCount(cartItem);
                                               },
-                                              child: const Text('-', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19)),
+                                              child: const Text('-',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 19)),
                                             ),
-                                            Text('${cartItem.quantity}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 19)),
+                                            Text('${cartItem.quantity}',
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 19)),
                                             GestureDetector(
                                               onTap: () {
-                                                itemAdded.incrementCount(cartItem);
+                                                itemAdded
+                                                    .incrementCount(cartItem);
                                               },
-                                              child: const Text('+', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19)),
+                                              child: const Text('+',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 19)),
                                             ),
                                           ],
                                         ),
@@ -157,8 +171,12 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                         const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Shipping', style: TextStyle(fontSize: 20, color: Colors.grey)),
-                            Text('Freeship', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                            Text('Shipping',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.grey)),
+                            Text('Freeship',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
                           ],
                         ),
                         const Gap(21),
@@ -166,9 +184,12 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text('Subtotal', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                            const Text('Subtotal',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
                             Text('\$${itemAdded.totalPrice.toStringAsFixed(2)}',
-                                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
                           ],
                         ),
                         const SizedBox(height: 20),
@@ -178,14 +199,19 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                               onPressed: () async {
                                 try {
                                   print('Payment button pressed');
-                                  await StripServices.initPaymentSheet('100', 'USD')
+                                  await StripServices.initPaymentSheet(
+                                          '100', 'USD')
                                       .then((value) {})
                                       .onError((error, stackTrace) {
                                     Utilis().ToastMessage(error.toString());
                                   });
-                                  await StripServices.presentPaymentSheet().then((value) {
+                                  await StripServices.presentPaymentSheet()
+                                      .then((value) {
                                     for (var item in data) {
-                                      _database.child('delivered_orders').push().set({
+                                      _database
+                                          .child('delivered_orders')
+                                          .push()
+                                          .set({
                                         'name': item.name,
                                         'price': item.price,
                                         'quantity': item.quantity,
@@ -198,21 +224,26 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                   }).onError((error, stackTrace) {
                                     Utilis().ToastMessage(error.toString());
                                   });
-                                  print('Payment process completed successfully');
+                                  print(
+                                      'Payment process completed successfully');
                                 } catch (e, stackTrace) {
                                   print('Error in payment process: $e');
                                   print('Stack trace: $stackTrace');
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                                backgroundColor: isDark ? Colors.deepPurple.shade300 : Colors.black,
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16.0),
+                                backgroundColor: isDark
+                                    ? Colors.deepPurple.shade300
+                                    : Colors.black,
                                 minimumSize: const Size(double.infinity, 50),
                               ),
                               child: Text('Proceed to checkout',
                                   style: TextStyle(
                                       fontSize: 16,
-                                      color: isDark ? Colors.black : Colors.white,
+                                      color:
+                                          isDark ? Colors.black : Colors.white,
                                       fontWeight: FontWeight.bold)),
                             );
                           },
@@ -231,8 +262,10 @@ class _Cart_ScreenState extends State<Cart_Screen> {
 
   Widget _buildItemImage(CartModel cartItem) {
     try {
-      if (cartItem.image.startsWith('Assets/') || cartItem.image.startsWith('assets/')) {
-        return Image.asset(cartItem.image, height: 71, width: 71, fit: BoxFit.cover);
+      if (cartItem.image.startsWith('Assets/') ||
+          cartItem.image.startsWith('assets/')) {
+        return Image.asset(cartItem.image,
+            height: 71, width: 71, fit: BoxFit.cover);
       } else {
         return Image.memory(
           base64Decode(cartItem.image),
