@@ -16,76 +16,76 @@ class _MensShowallState extends State<MensShowall> {
   final List<Cart_Item> items = [
     Cart_Item(
       title: 'Long coat',
-      subTitle: 'Rs 99.9',
+      subTitle: 99.9,
       UriImage: 'Products/images/img6.jpg',
     ),
 
     Cart_Item(
       title: '3p suite',
-      subTitle: "Rs 599.0",
+      subTitle: 99.9,
       UriImage: 'Products/images/img25.jpg',
     ),
 
     Cart_Item(
       title: 'Stylish black',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Products/images/img17.jpg',
     ),
     Cart_Item(
       title: 'Hoddie',
-      subTitle: 'Rs 99.9',
+      subTitle:99.9,
       UriImage: 'Products/images/img10.jpg',
     ),
 
     Cart_Item(
       title: 'V shape',
-      subTitle: "Rs 99.9",
+      subTitle: 99.9,
       UriImage: 'Products/images/img18.jpg',
     ),
 
     Cart_Item(
       title: 'Office ',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Products/images/img19.jpg',
     ),
     Cart_Item(
         UriImage: 'Products/images/img9.jpg',
-        subTitle: 'Rs 109',
+        subTitle: 99.9,
         title: 'Thomas shelby'),
 
     ///
     Cart_Item(
         UriImage: 'Products/images/img15.jpg',
-        subTitle: 'Rs 200',
+        subTitle: 99.9,
         title: 'Black'),
 
     Cart_Item(
         UriImage: 'Products/images/img3.jpg',
-        subTitle: 'Rs 901',
+        subTitle: 99.9,
         title: 'Office '),
 
     Cart_Item(
         UriImage: 'Products/images/img4.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Beggy shirt'),
 
     Cart_Item(
         UriImage: 'Products/images/img1.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Casual outfit'),
 
     Cart_Item(
         UriImage: 'Products/images/img2.jpg',
-        subTitle: 'Rs 501',
+        subTitle:  99.9,
         title: 'Gentle outfit'),
     Cart_Item(
         UriImage: 'Products/images/img5.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Beggy outfit'),
 
     Cart_Item(
         UriImage: 'Products/images/img13.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Trip outfit'),
   ];
 
@@ -159,7 +159,7 @@ class _MensShowallState extends State<MensShowall> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],

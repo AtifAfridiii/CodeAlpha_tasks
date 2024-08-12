@@ -25,6 +25,17 @@ class _FifthScreenState extends State<FifthScreen> {
     adBox = Boxes.getData2();
   }
 
+  double parsePrice(dynamic price) {
+    if (price is int) {
+      return price.toDouble();
+    } else if (price is double) {
+      return price;
+    } else if (price is String) {
+      return double.tryParse(price) ?? 0.0;
+    }
+    return 0.0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +56,7 @@ class _FifthScreenState extends State<FifthScreen> {
                 itemBuilder: (context, index) {
                   final entry = items[index];
                   final ad = entry.value as Map<dynamic, dynamic>;
+                final double price = parsePrice(ad['price']);
 
                   return InkWell(
                     onTap: () {
@@ -54,7 +66,7 @@ class _FifthScreenState extends State<FifthScreen> {
                             builder: (context) => Details(
                                 image: ad['image'],
                                 name: ad['Title'],
-                                price: ad['price'],
+                               price: price,
                                 description: ad['Description']),
                           ));
                     },
@@ -87,13 +99,13 @@ class _FifthScreenState extends State<FifthScreen> {
                             const Gap(5),
                             Text(ad['Description'] ?? 'No Description'),
                             const Gap(5),
-                            Text(
-                              'Price: ${ad['price'] ?? 'N/A'}',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                           Text(
+                            'Price: ${price.toStringAsFixed(2)}',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
+                          ),
                             const Gap(10),
                           ],
                         ),

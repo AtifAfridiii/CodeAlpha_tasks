@@ -1,5 +1,5 @@
-import 'dart:convert'; // Import for base64 decoding
-import 'dart:typed_data'; // Import for Uint8List
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:dukan/provider/auth.dart';
 import 'package:dukan/provider/theme.dart';
@@ -19,16 +19,16 @@ import 'package:dukan/screens/CartScreen/cart_model.dart';
 class Details extends StatefulWidget {
   final dynamic image;
   final String name;
-  final dynamic price;
+  final double price;
   final String description;
 
   const Details({
-    super.key,
+    Key? key,
     required this.image,
     required this.name,
     required this.price,
     required this.description,
-  });
+  }) : super(key: key);
 
   @override
   _DetailsState createState() => _DetailsState();
@@ -64,9 +64,14 @@ class _DetailsState extends State<Details> {
   void decodeImage() {
     if (widget.image != null) {
       try {
-        decodedImage = base64Decode(widget.image);
-        isAssetImage = false;
+        if (widget.image is String) {
+          decodedImage = base64Decode(widget.image);
+          isAssetImage = false;
+        } else {
+         isAssetImage = true;
+        }
       } catch (e) {
+        print("Error decoding image: $e");
         isAssetImage = true;
       }
     }
@@ -74,9 +79,12 @@ class _DetailsState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
-    final Iconprovider = Provider.of<ThemeChanger>(context);
-    bool ISDark = Iconprovider.Thememode == ThemeMode.dark;
+    final iconProvider = Provider.of<ThemeChanger>(context);
+    bool isDark = iconProvider.Thememode == ThemeMode.dark;
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -96,7 +104,7 @@ class _DetailsState extends State<Details> {
                 height: 300,
               ),
             SizedBox(
-              height: MediaQuery.sizeOf(context).height * 1,
+              height: MediaQuery.of(context).size.height * 1,
               child: Container(
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(82, 254, 254, 254),
@@ -123,7 +131,7 @@ class _DetailsState extends State<Details> {
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            '${widget.price}',
+                            '${widget.price.toStringAsFixed(2)}',
                             style: GoogleFonts.b612(
                               fontSize: 18,
                             ),
@@ -233,76 +241,87 @@ class _DetailsState extends State<Details> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
+       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
         child: Container(
-            padding: const EdgeInsets.all(16.0),
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: ISDark ? Colors.deepPurple : Colors.black,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: isItemAdded
-                ? const Text(
-                    'Item already added to cart',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                    textAlign: TextAlign.center,
-                  )
-                : Consumer<PendingOrdersProvider>(
-                    builder: (context, val, child) {
-                      return ElevatedButton.icon(
-                        onPressed: () {
-                          final data = {
-                            'image': base64Encode(decodedImage!),
-                            'name': widget.name,
-                            'price': widget.price,
-                            'status': 'Pending'
-                          };
+          padding: const EdgeInsets.all(16.0),
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: isDark ? Colors.deepPurple : Colors.black,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: isItemAdded
+              ? const Text(
+                  'Item already added to cart',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  textAlign: TextAlign.center,
+                )
+              : Consumer<PendingOrdersProvider>(
+                  builder: (context, val, child) {
+                    return ElevatedButton.icon(
+                      onPressed: () {
+                        final imageData = decodedImage != null
+                            ? base64Encode(decodedImage!)
+                            : null;
 
-                          final DatabaseReference database = FirebaseDatabase
-                              .instance
-                              .ref()
-                              .child('pending_orders');
+                        final data = {
+                          'image': imageData,
+                          'name': widget.name,
+                          'price': widget.price,
+                          'status': 'Pending'
+                        };
 
-                          database
-                              .push()
-                              .set(data)
-                              .then((_) {})
-                              .catchError((error) {
-                            Utilis().ToastMessage(error.toString());
+                        final DatabaseReference database = FirebaseDatabase
+                            .instance
+                            .ref()
+                            .child('pending_orders');
+
+                        database.push().set(data).then((_) {
+                          
+                        }).catchError((error) {
+                          Utilis().ToastMessage(error.toString());
+                        });
+
+                        final cartData = CartModel(
+                          image: widget.image,
+                          name: widget.name,
+                          price: widget.price, 
+                          quantity: 1, 
+                        );
+
+                        final box = Boxes.getData();
+                       
+                        box.add(cartData).then((value) {
+                          Utilis().ToastMessage('Item added');
+                          val.addPendingOrder(cartData);
+                          setState(() {
+                            isItemAdded = true;
                           });
+                        }).onError((error, stackTrace) {
+                          Utilis().ToastMessage(error.toString());
+                        });
 
-                          final cartData = CartModel(
-                            image: widget.image,
-                            name: widget.name,
-                            price: widget.price,
-                          );
-
-                          final box = Boxes.getData();
-                          box.add(cartData).then((value) {
-                            Utilis().ToastMessage('Item added');
-                            val.addPendingOrder(cartData);
-                          }).onError((error, stackTrace) {
-                            Utilis().ToastMessage(error.toString());
-                          });
-
-                          cartData.save();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor:
-                              ISDark ? Colors.deepPurple : Colors.black,
-                          minimumSize: const Size(double.infinity, 50),
-                        ),
-                        icon: const Icon(Icons.shopping_bag_outlined,
-                            color: Colors.white),
-                        label: const Text('Add To Cart',
-                            style: TextStyle(fontSize: 16)),
-                      );
-                    },
-                  )),
+                        cartData.save();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor:
+                            isDark ? Colors.deepPurple : Colors.black,
+                        minimumSize: const Size(double.infinity, 50),
+                      ),
+                      icon: const Icon(Icons.shopping_bag_outlined,
+                          color: Colors.white),
+                      label: const Text('Add To Cart',
+                          style: TextStyle(fontSize: 16)),
+                    );
+                  },
+                ),
+        ),
       ),
     );
+  }
+
+    
   }
 
   Widget buildColorButton(int index, Color color) {
@@ -434,4 +453,3 @@ class _DetailsState extends State<Details> {
       child: Center(child: Text(title)),
     );
   }
-}

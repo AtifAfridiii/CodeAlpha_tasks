@@ -12,14 +12,13 @@ class AdProvider extends ChangeNotifier {
 
   Future<void> initialize(String userId) async {
     if (_currentUserId != userId) {
-      // Close previous box if exists
+     
       await _adsBox?.close();
 
-      // Open new box for the current user
+      
       _adsBox = await Hive.openBox<AdModel>('Ads_$userId');
       _currentUserId = userId;
 
-      // Fetch ads for the new user
       await fetchAndStoreAds();
     }
   }
@@ -31,7 +30,7 @@ class AdProvider extends ChangeNotifier {
       if (event.snapshot.value != null) {
         Map<dynamic, dynamic> values =
             event.snapshot.value as Map<dynamic, dynamic>;
-        _adsBox!.clear(); // Clear existing data before adding new
+        _adsBox!.clear();
         values.forEach((key, value) {
           _adsBox!.put(
               key,

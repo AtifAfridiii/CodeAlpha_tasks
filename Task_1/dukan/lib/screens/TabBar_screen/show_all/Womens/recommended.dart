@@ -16,75 +16,75 @@ class _Women_RecommendedState extends State<Women_Recommended> {
   final List<Cart_Item> recommended_items = [
     Cart_Item(
       title: 'Hat & Bag',
-      subTitle: 'Rs 99.9',
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img50.jpg',
     ),
 
     Cart_Item(
       title: 'Women Sweater',
-      subTitle: "Rs 599.0",
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img51.jpg',
     ),
 
     Cart_Item(
       title: 'Shirts',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img52.jpg',
     ),
     Cart_Item(
       title: 'Japanese outfit',
-      subTitle: 'Rs 99.9',
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img53.jpg',
     ),
 
     Cart_Item(
       title: 'Ezi',
-      subTitle: "Rs 99.9",
+      subTitle:99.9,
       UriImage: 'Cloths/images/img54.jpg',
     ),
 
     Cart_Item(
       title: 'Office ',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img55.jpg',
     ),
     Cart_Item(
         UriImage: 'Cloths/images/img56.jpg',
-        subTitle: 'Rs 109',
+        subTitle: 99.9,
         title: 'Casual'),
 
     ///
     Cart_Item(
         UriImage: 'Cloths/images/img57.jpg',
-        subTitle: 'Rs 200',
+        subTitle:99.9,
         title: 'Beggy'),
 
     Cart_Item(
         UriImage: 'Cloths/images/img58.jpg',
-        subTitle: 'Rs 901',
+        subTitle: 99.9,
         title: 'Office '),
 
     Cart_Item(
         UriImage: 'Cloths/images/img59.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Ezi outfit'),
 
     Cart_Item(
         UriImage: 'Cloths/images/img60.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Casual outfit'),
 
     Cart_Item(
         UriImage: 'Cloths/images/img61.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Ezi outfit'),
     Cart_Item(
         UriImage: 'Cloths/images/img62.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Ralph Lauren'),
     Cart_Item(
         UriImage: 'Cloths/images/img63.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Chanel'),
   ];
 
@@ -159,7 +159,7 @@ class _Women_RecommendedState extends State<Women_Recommended> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],

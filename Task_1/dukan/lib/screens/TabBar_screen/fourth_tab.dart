@@ -35,17 +35,17 @@ class _FourthTabContentState extends State<FourthTabContent> {
     final List<Cart_Item> items = [
       Cart_Item(
         title: 'LipZ sticks',
-        subTitle: 'Rs 99.9',
+        subTitle: 111,
         UriImage: 'Beauty/images/img6.jpg',
       ),
       Cart_Item(
         title: 'Beauty seriums  ',
-        subTitle: "Rs 99.9",
+        subTitle: 99.9,
         UriImage: 'Beauty/images/img7.jpg',
       ),
       Cart_Item(
         title: 'Avon kit',
-        subTitle: 'Rs 549.0',
+        subTitle: 225,
         UriImage: 'Beauty/images/img8.jpg',
       ),
     ];
@@ -53,17 +53,17 @@ class _FourthTabContentState extends State<FourthTabContent> {
     final List<Cart_Item> recomended = [
       Cart_Item(
         title: 'Laura Mercier',
-        subTitle: 'Rs 99.9',
+        subTitle:99.9,
         UriImage: 'Beauty/images/img53.jpg',
       ),
       Cart_Item(
         title: 'Pat McGrath Labs',
-        subTitle: "Rs 99.9",
+        subTitle: 99.9,
         UriImage: 'Beauty/images/img57.jpg',
       ),
       Cart_Item(
         title: 'Serium',
-        subTitle: 'Rs 549.0',
+        subTitle: 99.9,
         UriImage: 'Beauty/images/img61.jpg',
       ),
     ];
@@ -276,7 +276,7 @@ class _FourthTabContentState extends State<FourthTabContent> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],
@@ -299,7 +299,7 @@ class _FourthTabContentState extends State<FourthTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'Beauty/images/img13.jpg',
-                          price: 'Rs 101',
+                          price: 100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),
@@ -325,7 +325,7 @@ class _FourthTabContentState extends State<FourthTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'Beauty/images/img17.jpg',
-                          price: 'Rs 101',
+                          price:  100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),
@@ -350,7 +350,7 @@ class _FourthTabContentState extends State<FourthTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'Beauty/images/img15.jpg',
-                          price: 'Rs 101',
+                          price:  100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),

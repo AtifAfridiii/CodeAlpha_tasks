@@ -16,76 +16,76 @@ class _WomenShowallState extends State<WomenShowall> {
   final List<Cart_Item> items = [
     Cart_Item(
       title: ' Red shirt',
-      subTitle: 'Rs 99.9',
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img1.jpg',
     ),
 
     Cart_Item(
       title: 'Black shirt',
-      subTitle: "Rs 599.0",
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img2.jpg',
     ),
 
     Cart_Item(
       title: 'Stylish ',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img3.jpg',
     ),
     Cart_Item(
       title: 'Loan suites',
-      subTitle: 'Rs 99.9',
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img4.jpg',
     ),
 
     Cart_Item(
       title: 'Loan suite',
-      subTitle: "Rs 99.9",
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img5.jpg',
     ),
 
     Cart_Item(
       title: 'jeans jacket ',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Cloths/images/img6.jpg',
     ),
     Cart_Item(
         UriImage: 'Cloths/images/img7.jpg',
-        subTitle: 'Rs 109',
+        subTitle: 99.9,
         title: 'Sports '),
 
     ///
     Cart_Item(
         UriImage: 'Cloths/images/img8.jpg',
-        subTitle: 'Rs 200',
+        subTitle: 99.9,
         title: 'Stylish'),
 
     Cart_Item(
         UriImage: 'Cloths/images/img9.jpg',
-        subTitle: 'Rs 901',
+        subTitle: 99.9,
         title: 'Sports '),
 
     Cart_Item(
         UriImage: 'Cloths/images/img10.jpg',
-        subTitle: 'Rs 501',
+        subTitle:99.9,
         title: 'Cotton'),
 
     Cart_Item(
         UriImage: 'Cloths/images/img11.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Casual outfit'),
 
     Cart_Item(
         UriImage: 'Cloths/images/img12.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: '2p beggy '),
     Cart_Item(
         UriImage: 'Cloths/images/img13.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'casual outfit'),
 
     Cart_Item(
         UriImage: 'Cloths/images/img14.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: ' lorum outfit'),
   ];
 
@@ -159,7 +159,7 @@ class _WomenShowallState extends State<WomenShowall> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],

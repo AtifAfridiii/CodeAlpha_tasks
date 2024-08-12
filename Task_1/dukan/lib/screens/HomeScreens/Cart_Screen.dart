@@ -19,20 +19,21 @@ class Cart_Screen extends StatefulWidget {
 }
 
 class _Cart_ScreenState extends State<Cart_Screen> {
-  final DatabaseReference _database = FirebaseDatabase.instance.ref();
+   final DatabaseReference _database = FirebaseDatabase.instance.ref();
 
   void delete(CartModel cartModel) {
     cartModel.delete().then((value) {
       Utilis().ToastMessage('Item removed from cart');
       _database.child('canceled_orders').push().set({
         'name': cartModel.name,
-        'price': cartModel.price,
+        'price': cartModel.price, 
         'quantity': cartModel.quantity,
         'image': cartModel.image,
         'timestamp': ServerValue.timestamp,
       });
+     Provider.of<ItemAdded>(context, listen: false).deleteItem(cartModel);
     }).onError((error, stackTrace) {
-      Utilis().ToastMessage(error.toString());
+      // Utilis().ToastMessage(error.toString());
     });
   }
 
@@ -50,7 +51,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                 child: ValueListenableBuilder<Box<CartModel>>(
                   valueListenable: Boxes.getData().listenable(),
                   builder: (context, value, child) {
-                    var data = value.values.toList().cast<CartModel>();
+                    dynamic data = value.values.toList().cast<CartModel>();
 
                     if (data.isEmpty) {
                       return Center(
@@ -69,8 +70,8 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                     return ListView.builder(
                       itemCount: data.length,
                       itemBuilder: (context, index) {
-                        var cartItem = data[index];
-
+                        dynamic cartItem = data[index];
+                       
                         return Card(
                           shadowColor: Colors.black,
                           child: Padding(
@@ -80,7 +81,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                                 ListTile(
                                   leading: _buildItemImage(cartItem),
                                   title: Text(cartItem.name.toString()),
-                                  subtitle: Text(cartItem.price),
+                                  subtitle: Text( cartItem.price.toStringAsFixed(2),),
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
@@ -156,7 +157,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
               ValueListenableBuilder<Box<CartModel>>(
                 valueListenable: Boxes.getData().listenable(),
                 builder: (context, value, child) {
-                  var data = value.values.toList().cast<CartModel>();
+                  dynamic data = value.values.toList().cast<CartModel>();
 
                   if (data.isEmpty) {
                     return const SizedBox.shrink();
@@ -187,7 +188,7 @@ class _Cart_ScreenState extends State<Cart_Screen> {
                             const Text('Subtotal',
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
-                            Text('\$${itemAdded.totalPrice.toStringAsFixed(2)}',
+                            Text('\$${data.fold(0, (sum, item) => sum + item.price * item.quantity).toStringAsFixed(2)}',
                                 style: const TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
                           ],
@@ -261,26 +262,26 @@ class _Cart_ScreenState extends State<Cart_Screen> {
   }
 
   Widget _buildItemImage(CartModel cartItem) {
-    try {
-      if (cartItem.image.startsWith('Assets/') ||
-          cartItem.image.startsWith('assets/')) {
-        return Image.asset(cartItem.image,
-            height: 71, width: 71, fit: BoxFit.cover);
-      } else {
-        return Image.memory(
-          base64Decode(cartItem.image),
-          height: 71,
-          width: 71,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            print('Error loading image: $error');
-            return const Icon(Icons.image_not_supported, size: 71);
-          },
-        );
-      }
-    } catch (e) {
-      print('Error displaying image: $e');
-      return const Icon(Icons.image_not_supported, size: 71);
+  try {
+    if (cartItem.image.startsWith('Assets/') || cartItem.image.startsWith('assets/')) {
+      String imagePath = cartItem.image.replaceFirst('Assets/', 'assets/'); // remove 'Assets/' prefix
+      imagePath = imagePath.replaceFirst('assets/', 'assets/'); // remove 'assets/' prefix
+      return Image.asset(imagePath, height: 71, width: 71, fit: BoxFit.cover);
+    } else {
+      return Image.memory(
+        base64Decode(cartItem.image),
+        height: 71,
+        width: 71,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          print('Error loading image: $error');
+          return const Icon(Icons.image_not_supported, size: 71);
+        },
+      );
     }
+  } catch (e) {
+    print('Error displaying image: $e');
+    return const Icon(Icons.image_not_supported, size: 71);
   }
+}
 }

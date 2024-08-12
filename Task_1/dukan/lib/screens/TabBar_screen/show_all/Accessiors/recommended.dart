@@ -16,73 +16,73 @@ class _Access_RecommendedState extends State<Access_Recommended> {
   final List<Cart_Item> recommended_items = [
     Cart_Item(
       title: 'Pearl ring',
-      subTitle: 'Rs 99.9',
+      subTitle:99.9,
       UriImage: 'access/images/img28.jpg',
     ),
 
     Cart_Item(
       title: 'Birthstone Ring',
-      subTitle: "Rs 599.0",
+      subTitle:99.9,
       UriImage: 'access/images/img15.jpg',
     ),
 
     Cart_Item(
       title: 'Peach glasses',
-      subTitle: 'Rs 549.0',
+      subTitle:99.9,
       UriImage: 'access/images/img16.jpg',
     ),
     Cart_Item(
       title: 'Women rings',
-      subTitle: 'Rs 99.9',
+      subTitle:99.9,
       UriImage: 'access/images/img17.jpg',
     ),
 
     Cart_Item(
       title: 'Braclets',
-      subTitle: "Rs 99.9",
+      subTitle:99.9,
       UriImage: 'access/images/img18.jpg',
     ),
 
     Cart_Item(
       title: 'Zara bag ',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'access/images/img19.jpg',
     ),
     Cart_Item(
         UriImage: 'access/images/img20.jpg',
-        subTitle: 'Rs 109',
+        subTitle:99.9,
         title: 'Remember me '),
 
     ///
     Cart_Item(
         UriImage: 'access/images/img21.jpg',
-        subTitle: 'Rs 200',
+        subTitle: 99.9,
         title: 'Diamonds'),
 
     Cart_Item(
         UriImage: 'access/images/img22.jpg',
-        subTitle: 'Rs 901',
+        subTitle:99.9,
         title: 'Eternity Ring '),
 
     Cart_Item(
         UriImage: 'access/images/img23.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Cocktail Ring'),
 
     Cart_Item(
         UriImage: 'access/images/img24.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Halo Ring'),
 
     Cart_Item(
         UriImage: 'access/images/img25.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Head phones'),
     Cart_Item(
-        UriImage: 'access/images/img26.jpg', subTitle: 'Rs 501', title: 'H&M'),
+        UriImage: 'access/images/img26.jpg', subTitle: 99.9, title: 'H&M'),
     Cart_Item(
         UriImage: 'access/images/img27.jpg',
-        subTitle: 'Rs 501',
+        subTitle:99.9,
         title: 'Mens watch'),
   ];
 
@@ -157,7 +157,7 @@ class _Access_RecommendedState extends State<Access_Recommended> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],

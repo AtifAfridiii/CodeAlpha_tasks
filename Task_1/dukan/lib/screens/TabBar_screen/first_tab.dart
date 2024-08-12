@@ -36,17 +36,17 @@ class _FirstTabContentState extends State<FirstTabContent> {
     final List<Cart_Item> items = [
       Cart_Item(
         title: 'Long coat',
-        subTitle: 'Rs 99.9',
+        subTitle: 99 ,
         UriImage: 'Products/images/img6.jpg',
       ),
       Cart_Item(
         title: '3p suite',
-        subTitle: "Rs 599.0",
+        subTitle: 599,
         UriImage: 'Products/images/img25.jpg',
       ),
       Cart_Item(
         title: 'Stylish black',
-        subTitle: 'Rs 549.0',
+        subTitle:599,
         UriImage: 'Products/images/img17.jpg',
       ),
     ];
@@ -54,17 +54,17 @@ class _FirstTabContentState extends State<FirstTabContent> {
     final List<Cart_Item> recomended = [
       Cart_Item(
         title: 'Preppy',
-        subTitle: 'Rs 99.9',
+        subTitle: 499,
         UriImage: 'Products/images/img55.jpg',
       ),
       Cart_Item(
         title: 'Formal Attire',
-        subTitle: "Rs 99.9",
+        subTitle: 100,
         UriImage: 'Products/images/img51.jpg',
       ),
       Cart_Item(
         title: 'Safari Style ',
-        subTitle: 'Rs 549.0',
+        subTitle: 222,
         UriImage: 'Products/images/img59.jpg',
       ),
     ];
@@ -277,7 +277,7 @@ class _FirstTabContentState extends State<FirstTabContent> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],
@@ -300,7 +300,7 @@ class _FirstTabContentState extends State<FirstTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'Products/images/img3.jpg',
-                          price: 'Rs 101',
+                          price:  100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),
@@ -326,7 +326,7 @@ class _FirstTabContentState extends State<FirstTabContent> {
                         MaterialPageRoute(
                           builder: (context) => Details(
                             image: 'Products/images/img15.jpg',
-                            price: 'Rs 101',
+                            price:  100.0,
                             name: 'Lorum ipsum',
                             description: des,
                           ),
@@ -359,7 +359,7 @@ class _FirstTabContentState extends State<FirstTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'Products/images/img4.jpg',
-                          price: 'Rs 101',
+                          price: 100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),

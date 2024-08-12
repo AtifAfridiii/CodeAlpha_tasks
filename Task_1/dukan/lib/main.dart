@@ -19,26 +19,71 @@ import 'package:dukan/strip/servicess/strip_services.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  StripServices.init();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
+Future<void> initHive() async {
+  await Hive.initFlutter();
   var directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path);
-  Hive.registerAdapter(CartModelAdapter());
-  await Hive.openBox<CartModel>('Cart');
-  Hive.registerAdapter(AdModelAdapter());
-  await Hive.openBox<AdModel>('Ad');
-  runApp(const MyApp());
+  
+  if (!Hive.isAdapterRegistered(CartModelAdapter().typeId)) {
+    Hive.registerAdapter(CartModelAdapter());
+  }
+  if (!Hive.isAdapterRegistered(AdModelAdapter().typeId)) {
+    Hive.registerAdapter(AdModelAdapter());
+  }
 }
 
+Future<Box<T>> openBox<T>(String boxName) async {
+  if (Hive.isBoxOpen(boxName)) {
+    return Hive.box<T>(boxName);
+  } else {
+    return await Hive.openBox<T>(boxName);
+  }
+}
+
+Future<void> migrateHiveData() async {
+  var box = await openBox<dynamic>('Cart');
+  
+  for (var key in box.keys) {
+    var item = box.get(key);
+    if (item is Map<String, dynamic>) {
+      try {
+        var cartModel = CartModel.fromJson(item);
+        await box.put(key, cartModel);
+      } catch (e) {
+        print('Error migrating item $key: $e');
+        await box.delete(key);
+      }
+    }
+  }
+  
+  await box.close();
+  await openBox<CartModel>('Cart');
+}
+
+void main() async {
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    StripServices.init();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    
+    await initHive();
+    await migrateHiveData();
+    await openBox<AdModel>('Ad');
+    
+    runApp(const MyApp());
+  } catch (e) {
+    print('Error during initialization: $e');
+   
+  }
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

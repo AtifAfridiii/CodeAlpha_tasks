@@ -35,17 +35,17 @@ class _SecondTabContentState extends State<SecondTabContent> {
     final List<Cart_Item> items = [
       Cart_Item(
         title: 'Jeans Jacket',
-        subTitle: 'Rs 99.9',
+        subTitle: 99.9,
         UriImage: 'Cloths/images/img6.jpg',
       ),
       Cart_Item(
         title: 'Sports ',
-        subTitle: "Rs 99.9",
+        subTitle: 99.9,
         UriImage: 'Cloths/images/img7.jpg',
       ),
       Cart_Item(
         title: 'Stylish ',
-        subTitle: 'Rs 549.0',
+        subTitle: 99.9,
         UriImage: 'Cloths/images/img8.jpg',
       ),
     ];
@@ -53,17 +53,17 @@ class _SecondTabContentState extends State<SecondTabContent> {
     final List<Cart_Item> recomended = [
       Cart_Item(
         title: 'Beggy',
-        subTitle: 'Rs 99.9',
+        subTitle: 99.9,
         UriImage: 'Cloths/images/img57.jpg',
       ),
       Cart_Item(
         title: 'Japanese outfit',
-        subTitle: "Rs 99.9",
+        subTitle: 99.9,
         UriImage: 'Cloths/images/img53.jpg',
       ),
       Cart_Item(
         title: 'Sweater',
-        subTitle: 'Rs 549.0',
+        subTitle: 99.9,
         UriImage: 'Cloths/images/img51.jpg',
       ),
     ];
@@ -276,7 +276,7 @@ class _SecondTabContentState extends State<SecondTabContent> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],
@@ -299,7 +299,7 @@ class _SecondTabContentState extends State<SecondTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'Cloths/images/img13.jpg',
-                          price: 'Rs 101',
+                          price: 100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),
@@ -324,7 +324,7 @@ class _SecondTabContentState extends State<SecondTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'Cloths/images/img14.jpg',
-                          price: 'Rs 101',
+                          price:100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),
@@ -349,7 +349,7 @@ class _SecondTabContentState extends State<SecondTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'Cloths/images/img15.jpg',
-                          price: 'Rs 101',
+                          price: 100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),

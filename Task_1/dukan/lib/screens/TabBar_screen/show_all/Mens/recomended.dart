@@ -16,67 +16,67 @@ class _Mens_RecommendedState extends State<Mens_Recommended> {
   final List<Cart_Item> recommended_items = [
     Cart_Item(
       title: 'Athleisure',
-      subTitle: 'Rs 99.9',
+      subTitle: 99.9,
       UriImage: 'Products/images/img50.jpg',
     ),
 
     Cart_Item(
       title: 'Formal Attire',
-      subTitle: "Rs 599.0",
+      subTitle: 99.9,
       UriImage: 'Products/images/img51.jpg',
     ),
 
     Cart_Item(
       title: 'Weekend Casual',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Products/images/img52.jpg',
     ),
     Cart_Item(
       title: 'Bohemian',
-      subTitle: 'Rs 99.9',
+      subTitle:99.9,
       UriImage: 'Products/images/img53.jpg',
     ),
 
     Cart_Item(
       title: 'Layered Looke',
-      subTitle: "Rs 99.9",
+      subTitle: 99.9,
       UriImage: 'Products/images/img54.jpg',
     ),
 
     Cart_Item(
       title: 'Preppy ',
-      subTitle: 'Rs 549.0',
+      subTitle:99.9,
       UriImage: 'Products/images/img55.jpg',
     ),
     Cart_Item(
         UriImage: 'Products/images/img56.jpg',
-        subTitle: 'Rs 109',
+        subTitle:99.9,
         title: 'Denim-on-Denim'),
 
     ///
     Cart_Item(
         UriImage: 'Products/images/img57.jpg',
-        subTitle: 'Rs 200',
+        subTitle:99.9,
         title: 'Boho Chic'),
 
     Cart_Item(
         UriImage: 'Products/images/img58.jpg',
-        subTitle: 'Rs 901',
+        subTitle: 99.9,
         title: 'Hipster '),
 
     Cart_Item(
         UriImage: 'Products/images/img59.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Safari Style'),
 
     Cart_Item(
         UriImage: 'Products/images/img60.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Minimalist'),
 
     Cart_Item(
         UriImage: 'Products/images/img61.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Vacation Wear'),
   ];
 
@@ -151,7 +151,7 @@ class _Mens_RecommendedState extends State<Mens_Recommended> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],

@@ -16,75 +16,75 @@ class _Beauty_RecommendedState extends State<Beauty_Recommended> {
   final List<Cart_Item> recommended_items = [
     Cart_Item(
       title: 'Milk Makeup',
-      subTitle: 'Rs 99.9',
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img50.jpg',
     ),
 
     Cart_Item(
       title: 'Ilia Beauty',
-      subTitle: "Rs 599.0",
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img51.jpg',
     ),
 
     Cart_Item(
       title: 'BareMinerals',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img52.jpg',
     ),
     Cart_Item(
       title: 'Shiseido',
-      subTitle: 'Rs 99.9',
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img53.jpg',
     ),
 
     Cart_Item(
       title: 'Bite Beauty',
-      subTitle: "Rs 99.9",
+      subTitle:99.9,
       UriImage: 'Beauty/images/img15.jpg',
     ),
 
     Cart_Item(
       title: 'Surratt Beauty ',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img55.jpg',
     ),
     Cart_Item(
         UriImage: 'Beauty/images/img56.jpg',
-        subTitle: 'Rs 109',
+        subTitle: 99.9,
         title: 'Beautycounter'),
 
     ///
     Cart_Item(
         UriImage: 'Beauty/images/img57.jpg',
-        subTitle: 'Rs 200',
+        subTitle: 99.9,
         title: 'Tatcha'),
 
     Cart_Item(
         UriImage: 'Beauty/images/img58.jpg',
-        subTitle: 'Rs 901',
+        subTitle: 99.9,
         title: 'Viseart '),
 
     Cart_Item(
         UriImage: 'Beauty/images/img59.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Vichy'),
 
     Cart_Item(
         UriImage: 'Beauty/images/img60.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Clarins'),
 
     Cart_Item(
         UriImage: 'Beauty/images/img61.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Farsali'),
     Cart_Item(
         UriImage: 'Beauty/images/img62.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Rituel de Fille'),
     Cart_Item(
         UriImage: 'Beauty/images/img63.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Caudalie'),
   ];
 
@@ -159,7 +159,7 @@ class _Beauty_RecommendedState extends State<Beauty_Recommended> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],

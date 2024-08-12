@@ -16,76 +16,76 @@ class _BeautyShowallState extends State<BeautyShowall> {
   final List<Cart_Item> items = [
     Cart_Item(
       title: 'MAC Cosmetics',
-      subTitle: 'Rs 99.9',
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img1.jpg',
     ),
 
     Cart_Item(
       title: 'Estée Lauder',
-      subTitle: "Rs 599.0",
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img2.jpg',
     ),
 
     Cart_Item(
       title: 'Maybelline',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img3.jpg',
     ),
     Cart_Item(
       title: 'NARS',
-      subTitle: 'Rs 99.9',
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img4.jpg',
     ),
 
     Cart_Item(
       title: 'Urban Decay',
-      subTitle: "Rs 99.9",
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img5.jpg',
     ),
 
     Cart_Item(
       title: 'Benefit Cosmetics ',
-      subTitle: 'Rs 549.0',
+      subTitle: 99.9,
       UriImage: 'Beauty/images/img6.jpg',
     ),
     Cart_Item(
         UriImage: 'Beauty/images/img7.jpg',
-        subTitle: 'Rs 109',
+        subTitle: 99.9,
         title: 'Too Faced'),
 
     ///
     Cart_Item(
         UriImage: 'Beauty/images/img8.jpg',
-        subTitle: 'Rs 200',
+        subTitle: 99.9,
         title: 'Charlotte Tilbury'),
 
     Cart_Item(
         UriImage: 'Beauty/images/img9.jpg',
-        subTitle: 'Rs 901',
+        subTitle: 99.9,
         title: 'Anastasia Beverly Hills '),
 
     Cart_Item(
         UriImage: 'Beauty/images/img10.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Huda Beauty'),
 
     Cart_Item(
         UriImage: 'Beauty/images/img11.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Tarte Cosmetics'),
 
     Cart_Item(
         UriImage: 'Beauty/images/img12.jpg',
-        subTitle: 'Rs 501',
+        subTitle:99.9,
         title: 'Laura Mercier'),
     Cart_Item(
         UriImage: 'Beauty/images/img13.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Smashbox'),
 
     Cart_Item(
         UriImage: 'Beauty/images/img15.jpg',
-        subTitle: 'Rs 501',
+        subTitle: 99.9,
         title: 'Glossier'),
   ];
 
@@ -159,7 +159,7 @@ class _BeautyShowallState extends State<BeautyShowall> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],

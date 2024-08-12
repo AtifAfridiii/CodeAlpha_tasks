@@ -1,6 +1,6 @@
 class Cart_Item {
   final String title;
-  final String subTitle;
+  final double subTitle;
   final UriImage;
 
   Cart_Item(

@@ -48,6 +48,7 @@ class ItemAdded with ChangeNotifier {
     });
   }
 
+
   Future<void> clearCart() async {
     _items.clear();
     var box = Boxes.getData();

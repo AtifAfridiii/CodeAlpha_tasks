@@ -10,7 +10,7 @@ class CartModel extends HiveObject {
   final String name;
 
   @HiveField(2)
-  final String price;
+  final double price;
 
   @HiveField(3)
   int quantity;
@@ -22,7 +22,22 @@ class CartModel extends HiveObject {
     this.quantity = 1,
   });
 
-  double get priceAsDouble => double.tryParse(price) ?? 0.0;
+  double get priceAsDouble => price;
+  factory CartModel.fromJson(Map<String, dynamic> json) {
+    return CartModel(
+      image: json['image'] as String,
+      name: json['name'] as String,
+      price: _parseDouble(json['price']),
+      quantity: json['quantity'] as int? ?? 1,
+    );
+  }
+
+  static double _parseDouble(dynamic value) {
+    if (value is double) return value;
+    if (value is int) return value.toDouble();
+    if (value is String) return double.parse(value);
+    throw FormatException('Cannot parse $value to double');
+  }
 }
 
 @HiveType(typeId: 1)

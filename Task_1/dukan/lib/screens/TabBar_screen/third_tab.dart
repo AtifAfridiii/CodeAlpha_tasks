@@ -35,17 +35,17 @@ class _ThirdTabContentState extends State<ThirdTabContent> {
     final List<Cart_Item> items = [
       Cart_Item(
         title: 'Mens ring',
-        subTitle: 'Rs 99.9',
+        subTitle: 99.9,
         UriImage: 'access/images/img6.jpg',
       ),
       Cart_Item(
         title: 'Pearl necklace ',
-        subTitle: "Rs 99.9",
+        subTitle:99.9,
         UriImage: 'access/images/img7.jpg',
       ),
       Cart_Item(
         title: 'Ruby necklace ',
-        subTitle: 'Rs 549.0',
+        subTitle: 99.9,
         UriImage: 'access/images/img8.jpg',
       ),
     ];
@@ -53,17 +53,17 @@ class _ThirdTabContentState extends State<ThirdTabContent> {
     final List<Cart_Item> recomended = [
       Cart_Item(
         title: 'Mini speakers',
-        subTitle: 'Rs 99.9',
+        subTitle: 99.9,
         UriImage: 'access/images/img9.jpg',
       ),
       Cart_Item(
         title: 'Zara bag',
-        subTitle: "Rs 99.9",
+        subTitle:99.9,
         UriImage: 'access/images/img10.jpg',
       ),
       Cart_Item(
         title: 'Gold chains ',
-        subTitle: 'Rs 549.0',
+        subTitle: 99.9,
         UriImage: 'access/images/img11.jpg',
       ),
     ];
@@ -276,7 +276,7 @@ class _ThirdTabContentState extends State<ThirdTabContent> {
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           ),
           Text(
-            item.subTitle,
+            item.subTitle.toStringAsFixed(2),
             style: GoogleFonts.b612(fontWeight: FontWeight.bold),
           )
         ],
@@ -299,7 +299,7 @@ class _ThirdTabContentState extends State<ThirdTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'access/images/img13.jpg',
-                          price: 'Rs 101',
+                          price: 100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),
@@ -324,7 +324,7 @@ class _ThirdTabContentState extends State<ThirdTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'access/images/img14.jpg',
-                          price: 'Rs 101',
+                          price: 100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),
@@ -349,7 +349,7 @@ class _ThirdTabContentState extends State<ThirdTabContent> {
                       MaterialPageRoute(
                         builder: (context) => Details(
                           image: 'access/images/img15.jpg',
-                          price: 'Rs 101',
+                          price: 100.0,
                           name: 'Lorum ipsum',
                           description: des,
                         ),
